@@ -4,8 +4,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>de.servicezombie.invest</groupId>
-	<artifactId>value-invest-app</artifactId>
+	<groupId>de.servicezombie.sample</groupId>
+	<artifactId>camunda-client-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
