@@ -1,0 +1,41 @@
+version: "3.9"
+services:
+  camunda:
+    build:
+      context: .
+      dockerfile: camunda.dockerfile
+    ports:
+      - "8080:8080"
+      - "9990:9990"
+    environment:
+      WAIT_FOR: 'postgres:5432'
+      DB_DRIVER: 'org.postgresql.Driver'
+      DB_URL: 'jdbc:postgresql://postgres:5432/postgres'
+      DB_USERNAME: 'postgres'
+      DB_PASSWORD: 'postgres-password'
+      JMX_PROMETHEUS: 'true'
+  postgres:
+    image: postgres:latest
+    volumes:
+       - db-home:/var/lib/postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres-password
+      PGDATA: /var/lib/postgres/data
+      # disable db security
+      POSTGRES_HOST_AUTH_METHOD: trust
+  #pgadmin4:
+  #  image: 'dpage/pgadmin4'
+  #  ports:
+  #    - 8843:8843
+  #  environment:
+  #    PGADMIN_DEFAULT_PASSWORD: 'postgres-password'
+  #    PGADMIN_ENABLE_TLS: 1
+  #    PGADMIN_LISTEN_PORT: 8843
+  #  volumes:
+  #    - pgadmin4-home:/var/lib/pgadmin
+
+volumes:
+  db-home:  
+  #pgadmin4-home:
